@@ -1,9 +1,9 @@
 # home-assistant-olympia-electronics
 Home Assistant support for the Olympia Electronics Wifi Thermostat BS-850.
 
-:balloon: :balloon: Works with Google Assistant integration of HA :balloon: :balloon:
-
 <img src="https://www.olympia-electronics.gr/skn/logoen.png" height="50" alt="Olympia Electronics"><img src="https://lh3.googleusercontent.com/uGa9TO5QoqdmDTEMhTWSDnmw0IdDzn8rmrkzDWJfZoRwQGMlaalMngCfn97eILEXHrg=s180-rw" height="50" alt="Olympia Electronics Thermostat"> <img src="https://www.home-assistant.io/images/components/alexa/alexa-512x512.png" alt="Home Assistant" height="50">
+
+:balloon: :balloon: Works with Google Assistant integration of HA :balloon: :balloon:
 
 <img src="https://i.ibb.co/sHZhwTB/thermostat.jpg">
 
