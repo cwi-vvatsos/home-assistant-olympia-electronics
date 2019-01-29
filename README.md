@@ -11,6 +11,11 @@ climate:
     email: your@email.com
     password: your_password
 ````    
+### Possible issues
+
+Although i think this will work with multiple thermostats into your account, i haven't tested it. If you have multiple thermostats and run into any issues, open a ticket
+
+The auth token handling is - not as efficient as i would hope it would be. I will work on optimizing it in the future. 
 
 ### Some Declerations
 I'm no python developer. I've created the code based on the demos of home assistant. Although it is rough around the edges and probably not as efficient, it works.
