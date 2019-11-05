@@ -13,7 +13,7 @@ Home Assistant support for the Olympia Electronics Wifi Thermostat BS-850.
 
 ### Installation
 - Download [Olympia Electronics Thermostat from Google Play](https://play.google.com/store/apps/details?id=gr.olympiaelectronics.thermostat), create an account and follow the instructions to register your thermostat. Set it up properly.
-- Put olympia_electronics.py inside *{homeassistantconfigfolder}*/custom_components/climate/ (create the folder structure if it not exists)
+- Put climate.py inside *{homeassistantconfigfolder}*/custom_components/olympia_electronics/ (create the folder structure if it not exists)
 - Edit the configuration.yaml like this:
 ```
 climate:
