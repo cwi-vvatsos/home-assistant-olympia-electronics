@@ -1,0 +1,11 @@
+{
+  "domain": "olympia_electronics",
+  "name": "Olympia Electronics",
+  "documentation": "https://github.com/cwi-vvatsos/home-assistant-olympia-electronics",
+  "issue_tracker": "https://github.com/cwi-vvatsos/home-assistant-olympia-electronics/issues",
+  "codeowners": ["@vvatsos"],
+  "dependencies": ["http", "zeroconf"],
+  "requirements": [],
+  "version": "v1.0.1",
+  "iot_class": "cloud_poling"
+}
