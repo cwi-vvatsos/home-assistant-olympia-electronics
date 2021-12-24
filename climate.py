@@ -6,9 +6,20 @@ import logging, json, requests, jwt, re, datetime
 
 import voluptuous as vol
 
+"""
+ATTR_HVAC_MODE = ATTR_OPERATION_MODE
+HVAC_MODE_AUTO = STATE_AUTO
+HVAC_MODE_COOL = STATE_COOL
+HVAC_MODE_HEAT = STATE_HEAT
+HVAC_MODE_OFF = STATE_OFF
+CURRENT_HVAC_IDLE = STATE_IDLE
+SUPPORT_OPERATION_MODE = ? gone
+SUPPORT_ON_OFF = ? hone
+"""
+
 from homeassistant.components.climate import (
     ATTR_CURRENT_TEMPERATURE, ATTR_FAN_MODE, ATTR_HVAC_MODE,
-    PLATFORM_SCHEMA, ClimateDevice)
+    PLATFORM_SCHEMA, ClimateEntity)
 from homeassistant.components.climate.const import (
     HVAC_MODE_AUTO, HVAC_MODE_HEAT, HVAC_MODE_OFF, CURRENT_HVAC_IDLE, SUPPORT_TARGET_TEMPERATURE,
     CURRENT_HVAC_COOL, CURRENT_HVAC_HEAT, CURRENT_HVAC_OFF)
@@ -97,7 +108,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
 
 
-class OlympiaElectronicsThermostat(ClimateDevice):
+class OlympiaElectronicsThermostat(ClimateEntity):
     """Representation of a Olympia Electronics Thermostat."""
 
     def __init__(self, login_details, id, name, status, min_temp, max_temp, precision, auth_token):
@@ -144,7 +155,8 @@ class OlympiaElectronicsThermostat(ClimateDevice):
     @property
     def isValidToken(self):
         try:
-            decToken = jwt.decode(self._AUTH_TOKEN, verify=False)
+            _LOGGER.debug('trying to decode JWT: %s',self._AUTH_TOKEN)
+            decToken = jwt.decode(self._AUTH_TOKEN, options={"verify_signature": False}, algorithms=["HS256"])
             dt = datetime.datetime.utcnow()
             if decToken.get('exp')<dt.timestamp():
                 _LOGGER.warning('JWT EXPIRED')
@@ -163,7 +175,7 @@ class OlympiaElectronicsThermostat(ClimateDevice):
 
     def update(self):
         """Requested update"""
-        """_LOGGER.debug('Called update')"""
+        _LOGGER.debug('Called update')
         if not self.isValidToken:
             self.updateToken()
             if not self.isValidToken:
@@ -184,6 +196,7 @@ class OlympiaElectronicsThermostat(ClimateDevice):
                     _LOGGER.warning('Failed to fetch updated token')
                     return
         else:
+            _LOGGER.debug('Got response from olympia')
             resp = r.json()
             _LOGGER.debug('Updated info from thermostat: %s',resp)
             self.setStatus(resp['status'])
